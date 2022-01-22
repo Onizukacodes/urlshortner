@@ -17,6 +17,8 @@ app.use(express.static("build"));
 
 app.get("/*", (req, res) => {
   let urlId = req.originalUrl.split("/")[1];
+  if (!urlId) res.sendFile(path.join(__dirname, "build", "index.html"));
+
   console.log("asdasdasd", urlId);
   fs.readFile(DB_PATH, (err, data) => {
     data = JSON.parse(data);
